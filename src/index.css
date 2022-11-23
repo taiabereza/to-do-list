@@ -2,6 +2,14 @@
   padding: 0px;
   margin: 0px;
   border: 0px;
+  --bg-main-color: #B5BBA8;
+  --text-main-color: #2D2E2B;
+  --text-light-color: #D3C5A8;
+  --elem-bg-color: #926B53;
+  --elem-bg-subcolor: #D6D3C2;
+  --outline-color: #3D643D;
+  --ok-color: #808000;
+  --alert-color: #A52A2A;
 }
 
 *,
@@ -13,6 +21,15 @@
 :focus,
 :active {
   outline: none;
+}
+
+input, button, select {
+  border: 2px solid transparent;
+}
+
+*:focus-visible {
+  outline: none;
+  border: 2px solid var(--outline-color);
 }
 
 a:focus,
@@ -27,8 +44,8 @@ body {
 }
 
 body {
-  background-color:peachpuff;
-  color: #3f3f3f;
+  background-color: var(--bg-main-color);
+  color: var(--text-main-color);
   line-height: 1;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.125rem;

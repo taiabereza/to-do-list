@@ -11,26 +11,63 @@
     align-items: center;
 }
 
+input,
+select {
+    background-color: var(--elem-bg-subcolor);
+}
+
 .list-form .list-select {
+    width: 160px;
     margin-left: 10px;
     align-self: center;
+    position: relative;
+}
+
+.list-form .list-select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 17px;
+    color: var(--elem-bg-color);
+    transform: rotate(-90deg);
+    background-color: transparent;
+    transition: .25s all ease;
+    pointer-events: none;
+}
+
+.list-form .list-select:hover::after {
+    filter: saturate(1.9);
+    transform: rotate(0deg);
+}
+
+.list-form .list-select select {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
 }
 
 .list-form button,
 .list-item-wrapper button {
     padding: 15px;
     font-size: 1.4rem;
-    background-color:aliceblue;
+    background-color: var(--text-light-color);
 }
 
 .list-form button:hover,
 .list-item-wrapper button:hover {
-    background-color:silver;
+    background-color: var(--text-light-color);
+    filter: brightness(.9);
 }
 
 .list-items-container {
     padding: 15px;
 }
+
 
 .list-item-wrapper {
     margin: 10px;
@@ -38,19 +75,27 @@
 }
 
 .list-item-wrapper .list-item {
-    background-color:cadetblue;
-    color:aliceblue;
+    background-color: var(--elem-bg-color);
+    color: var(--text-light-color);
+}
+
+.list-item-wrapper li.list-item {
+    border: 2px solid transparent;
+}
+
+.list-item-wrapper .btn-save-edit {
+    font-size: 1.095rem;
 }
 
 .list-item-wrapper .btn-done {
-    color:olive;
+    color: var(--ok-color);
 }
 
 .list-item-wrapper .btn-delete {
-    color: brown;
+    color: var(--alert-color);
 }
 
 .list-item.done {
-    background-color:slategray;
+    filter: contrast(.8) brightness(.8);
     text-decoration: line-through;
 }

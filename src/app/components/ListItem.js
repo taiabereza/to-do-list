@@ -40,8 +40,15 @@ export default function ListItem({ item, value, listItems, setListItems, setEdit
 	return (
 		<div className="list-item-wrapper">
 			{editItem === item.id ?
-				(<input autoFocus className="list-item" type="text" onChange={(e) => { setEditItemValue(e.target.value) }} value={editItemValue} />)
-				: (<li className={`list-item ${item.done ? 'done' : ''}`}>{value}</li>)
+				(<input autoFocus
+								className="list-item"
+								type="text"
+								onChange={(e) => { setEditItemValue(e.target.value) }}
+								value={editItemValue}
+								/>)
+				: (<li className={`list-item ${item.done ? 'done' : ''}`}>
+						{value}
+					</li>)
 			}
 
 			{editItem === item.id ?
