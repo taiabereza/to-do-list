@@ -12,7 +12,7 @@ export default function ListItem({ item, value, listItems, setListItems, setEdit
 				if (elem.id === item.id) {
 					return {
 						...item,
-						done: !elem.done,
+						status: { done: !elem.status.done, open: elem.status.open },
 					};
 				}
 				return elem;
@@ -25,7 +25,7 @@ export default function ListItem({ item, value, listItems, setListItems, setEdit
 				if (elem.id === item.id) {
 					return {
 						...item,
-						open: !elem.open,
+						status: { done: elem.status.done, open: !elem.status.open },
 					}
 				}
 				return elem;
@@ -67,41 +67,41 @@ export default function ListItem({ item, value, listItems, setListItems, setEdit
 					value={editItemValue}
 					onKeyDown={(e) => handleOnEnterPress(e)}
 				/>)
-				: (<li className={`list-item ${item.done ? 'done'
-																				: !item.open ? 'in-progress'
-																				: ''}`}>
+				: (<li className={`list-item ${item.status.done ? 'done'
+					: !item.status.open ? 'in-progress'
+						: ''}`}>
 					<span>{value}</span>
 				</li>)
 			}
 
 			{editItem === item.id ?
 				(<button className="btn-save-edit"
-									title="Зберегти"
-									onClick={() => { handleSaveEditListItem(item.id) }}>
+					title="Зберегти"
+					onClick={() => { handleSaveEditListItem(item.id) }}>
 					&#128190;
 				</button>)
 				: (<button className="btn-edit"
-										title="Редагувати"
-										onClick={handleEditListItem}>
+					title="Редагувати"
+					onClick={handleEditListItem}>
 					&#128397;
 				</button>)
 			}
 
 			<button className="btn-in-progress"
-							title="Виконується"
-							onClick={toggleInProgressItem}>
+				title="Виконується"
+				onClick={toggleInProgressItem}>
 				&#128338;
 			</button>
 
 			<button className="btn-done"
-							title="Виконано"
-							onClick={toggleDoneItem}>
+				title="Виконано"
+				onClick={toggleDoneItem}>
 				&#10004;
 			</button>
 
 			<button className="btn-delete"
-							title="Видалити"
-							onClick={toggleDeleteItem}>
+				title="Видалити"
+				onClick={toggleDeleteItem}>
 				&#10006;
 			</button>
 		</div>

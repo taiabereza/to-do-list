@@ -11,7 +11,7 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 		setListItems([
 			...listItems,
 			{
-				text: inputValue, done: false, open: true, id:Math.random() * 1000
+				text: inputValue, status: {done: false, open: true}, id:Math.random() * 1000
 			}
 		])
 		setInputValue('');
