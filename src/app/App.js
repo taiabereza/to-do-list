@@ -23,11 +23,14 @@ function App() {
   
   const handleFilterItems = () => {
     switch(filterStatus){
-      case 'done':
-        setfilteredItems(listItems.filter(item => item.done === true));
+      case 'open':
+        setfilteredItems(listItems.filter(item => item.open === true));
         break;
       case 'in-progress':
-        setfilteredItems(listItems.filter(item => item.done === false));
+        setfilteredItems(listItems.filter(item => item.open === false));
+        break;
+      case 'done':
+        setfilteredItems(listItems.filter(item => item.done === true));
         break;
       default:
         setfilteredItems(listItems);

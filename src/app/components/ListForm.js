@@ -11,7 +11,7 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 		setListItems([
 			...listItems,
 			{
-				text: inputValue, done: false, id:Math.random() * 1000
+				text: inputValue, done: false, open: true, id:Math.random() * 1000
 			}
 		])
 		setInputValue('');
@@ -32,8 +32,9 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 						id="status"
 						onChange={handleFilterStatusChange}>
 					<option value="all">Всі</option>
-					<option value="in-progress">В процесі</option>
-					<option value="done">Завершені</option>
+					<option value="open">Відкриті</option>
+					<option value="in-progress">Виконуються</option>
+					<option value="done">Виконані</option>
 				</select>
 			</div>
 		</form>

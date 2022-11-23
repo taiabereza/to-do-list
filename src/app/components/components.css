@@ -53,8 +53,8 @@ select {
 
 .list-form button,
 .list-item-wrapper button {
+    font-weight: 600;
     padding: 15px;
-    font-size: 1.4rem;
     background-color: var(--text-light-color);
 }
 
@@ -83,10 +83,6 @@ select {
     border: 2px solid transparent;
 }
 
-.list-item-wrapper .btn-save-edit {
-    font-size: 1.095rem;
-}
-
 .list-item-wrapper .btn-done {
     color: var(--ok-color);
 }
@@ -98,4 +94,18 @@ select {
 .list-item.done {
     filter: contrast(.8) brightness(.8);
     text-decoration: line-through;
+}
+
+.list-item.in-progress {
+    filter:hue-rotate(-10deg);
+}
+
+.list-item.in-progress span {
+    text-decoration: underline;
+}
+
+.list-item.in-progress::before {
+    content: '🕒';
+    margin-right: 10px;
+    text-decoration: none;
 }

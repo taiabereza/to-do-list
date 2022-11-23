@@ -2,11 +2,11 @@ import React from "react";
 import './components.css';
 
 export default function ListItem({ item, value, listItems, setListItems, setEditItem, setEditItemValue, editItemValue, editItem }) {
-	const handleDeleteItem = () => {
+	const toggleDeleteItem = () => {
 		setListItems(listItems.filter(elem => elem.id !== item.id));
 	}
 
-	const handleDoneItem = () => {
+	const toggleDoneItem = () => {
 		setListItems(
 			listItems.map(elem => {
 				if (elem.id === item.id) {
@@ -19,10 +19,24 @@ export default function ListItem({ item, value, listItems, setListItems, setEdit
 			}))
 	};
 
+	const toggleInProgressItem = () => {
+		setListItems(
+			listItems.map(elem => {
+				if (elem.id === item.id) {
+					return {
+						...item,
+						open: !elem.open,
+					}
+				}
+				return elem;
+			})
+		)
+	}
+
 	const handleEditListItem = () => {
 		setEditItem(item.id);
 		setEditItemValue(item.text);
-		
+
 	}
 
 	function handleSaveEditListItem(id) {
@@ -47,34 +61,47 @@ export default function ListItem({ item, value, listItems, setListItems, setEdit
 		<div className="list-item-wrapper">
 			{editItem === item.id ?
 				(<input autoFocus
-								className="list-item"
-								type="text"
-								onChange={(e) => { setEditItemValue(e.target.value) }}
-								value={editItemValue}
-								onKeyDown={(e) => handleOnEnterPress(e)}
-								/>)
-				: (<li className={`list-item ${item.done ? 'done' : ''}`}>
-						{value}
-					</li>)
+					className="list-item"
+					type="text"
+					onChange={(e) => { setEditItemValue(e.target.value) }}
+					value={editItemValue}
+					onKeyDown={(e) => handleOnEnterPress(e)}
+				/>)
+				: (<li className={`list-item ${item.done ? 'done'
+																				: !item.open ? 'in-progress'
+																				: ''}`}>
+					<span>{value}</span>
+				</li>)
 			}
 
 			{editItem === item.id ?
 				(<button className="btn-save-edit"
-					onClick={() => { handleSaveEditListItem(item.id) }}>
+									title="Зберегти"
+									onClick={() => { handleSaveEditListItem(item.id) }}>
 					&#128190;
 				</button>)
 				: (<button className="btn-edit"
-					onClick={handleEditListItem}>
+										title="Редагувати"
+										onClick={handleEditListItem}>
 					&#128397;
 				</button>)
 			}
 
+			<button className="btn-in-progress"
+							title="Виконується"
+							onClick={toggleInProgressItem}>
+				&#128338;
+			</button>
+
 			<button className="btn-done"
-				onClick={handleDoneItem}>
+							title="Виконано"
+							onClick={toggleDoneItem}>
 				&#10004;
 			</button>
+
 			<button className="btn-delete"
-				onClick={handleDeleteItem}>
+							title="Видалити"
+							onClick={toggleDeleteItem}>
 				&#10006;
 			</button>
 		</div>
