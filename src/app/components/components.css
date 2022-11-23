@@ -1,0 +1,56 @@
+.list-form {
+    display: flex;
+    padding: 30px;
+}
+
+.list-form input,
+.list-item-wrapper .list-item {
+    width: 250px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.list-form .list-select {
+    margin-left: 10px;
+    align-self: center;
+}
+
+.list-form button,
+.list-item-wrapper button {
+    padding: 15px;
+    font-size: 1.4rem;
+    background-color:aliceblue;
+}
+
+.list-form button:hover,
+.list-item-wrapper button:hover {
+    background-color:silver;
+}
+
+.list-items-container {
+    padding: 15px;
+}
+
+.list-item-wrapper {
+    margin: 10px;
+    display: flex;
+}
+
+.list-item-wrapper .list-item {
+    background-color:cadetblue;
+    color:aliceblue;
+}
+
+.list-item-wrapper .btn-done {
+    color:olive;
+}
+
+.list-item-wrapper .btn-delete {
+    color: brown;
+}
+
+.list-item.done {
+    background-color:slategray;
+    text-decoration: line-through;
+}
