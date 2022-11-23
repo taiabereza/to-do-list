@@ -37,6 +37,12 @@ export default function ListItem({ item, value, listItems, setListItems, setEdit
 		setEditItemValue('');
 	}
 
+	const handleOnEnterPress = (e) => {
+		if (e.key === 'Enter') {
+			handleSaveEditListItem(item.id);
+		}
+	}
+
 	return (
 		<div className="list-item-wrapper">
 			{editItem === item.id ?
@@ -45,6 +51,7 @@ export default function ListItem({ item, value, listItems, setListItems, setEdit
 								type="text"
 								onChange={(e) => { setEditItemValue(e.target.value) }}
 								value={editItemValue}
+								onKeyDown={(e) => handleOnEnterPress(e)}
 								/>)
 				: (<li className={`list-item ${item.done ? 'done' : ''}`}>
 						{value}
