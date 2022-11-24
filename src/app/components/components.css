@@ -1,9 +1,27 @@
 .list-form {
+    width: 80%;
+    max-width: 700px;
     display: flex;
-    padding: 30px;
+    flex-direction: column;
+    margin: 30px;
 }
 
-.list-form input,
+.form-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+.list-form input {
+    flex: 1 0 65%;
+    padding: 0 15px;
+}
+
+.list-form textarea {
+    padding: 10px;
+    resize: none;
+}
+
 .list-item-wrapper .list-item {
     width: 250px;
     padding: 15px;
@@ -17,9 +35,7 @@ select {
 }
 
 .list-form .list-select {
-    width: 160px;
-    margin-left: 10px;
-    align-self: center;
+    width: 100%;
     position: relative;
 }
 
@@ -65,21 +81,72 @@ select {
 }
 
 .list-items-container {
-    padding: 15px;
+    width: 100%;
+    display: flex;
 }
 
 
 .list-item-wrapper {
-    margin: 10px;
+    min-width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.list-items {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4%;
+}
+
+@media (max-width: 1500px) {
+    .list-items {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1100px) {
+    .list-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+    .list-items {
+        grid-template-columns: 1fr;
+    }
+    .form-wrapper {
+        flex-direction: column;
+    }
+    .list-form input {
+        padding: 15px;
+    }
+}
+
+.list-item-wrapper .btns {
+    width: 100%;
     display: flex;
 }
 
-.list-item-wrapper .list-item {
-    background-color: var(--elem-bg-color);
-    color: var(--text-light-color);
+.list-item-wrapper .btns>* {
+    flex: 1 0 auto;
 }
 
-.list-item-wrapper li.list-item {
+.list-item-wrapper .list-item {
+    width: 100%;
+    background-color: var(--elem-bg-color);
+    color: var(--text-light-color);
+    
+}
+
+.list-item-wrapper .list-item span {
+    width: 100%;
+    word-wrap: break-word;
+}
+
+
+.list-item-wrapper div.list-item {
     border: 2px solid transparent;
 }
 
@@ -97,14 +164,15 @@ select {
 }
 
 .list-item.in-progress {
-    filter:hue-rotate(-10deg);
+    filter: hue-rotate(-10deg);
 }
 
-.list-item.in-progress span {
+.list-item-title.in-progress span {
+    width: 90%;
     text-decoration: underline;
 }
 
-.list-item.in-progress::before {
+.list-item-title.in-progress::before {
     content: '🕒';
     margin-right: 10px;
     text-decoration: none;

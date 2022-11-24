@@ -15,7 +15,8 @@ export default function ToDoList({ listItems, setListItems, setEditItemValue, fi
 										setEditItem={setEditItem}
 										editItem={editItem}
 										item = {item}
-										value={item.text}
+										titleValue={item.title}
+										descrValue={item.descr}
 										key={item.id} />
 				))}
 			</ul>

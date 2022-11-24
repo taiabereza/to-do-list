@@ -6,6 +6,7 @@ import ToDoList from './components/ToDoList';
 function App() {
 
   const [inputValue, setInputValue] = useState('');
+  const [textareaValue, setTextareaValue] = useState('');
   const [listItems, setListItems] = useState([]);
   const [filterStatus, setFilterStatus] = useState('all');
   const [filteredItems, setfilteredItems] = useState([]);
@@ -54,13 +55,16 @@ function App() {
   }
 
   return (
-    <div className='App'>
+    <div className='app'>
+      <div className="app-container">
       <header>
         <h2>СПИСОК СПРАВ</h2>
       </header>
 
       <ListForm inputValue={inputValue}
                 setInputValue={setInputValue}
+                textareaValue={textareaValue}
+                setTextareaValue={setTextareaValue}
                 listItems={listItems}
                 setListItems={setListItems}
                 setFilterStatus={setFilterStatus}
@@ -74,6 +78,7 @@ function App() {
                 setEditItemValue={setEditItemValue}
                 editItemValue={editItemValue}
                 />
+      </div>
     </div>
   );
 }
