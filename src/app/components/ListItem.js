@@ -80,18 +80,17 @@ export default function ListItem({ item, titleValue, listItems, setListItems, se
 				}
 
 				{editItem === item.id ?
-					(<textarea autoFocus
-						className="list-item"
+					(<textarea className="list-item list-item-descr"
 						name="card-descr"
 						maxLength={220}
 						onChange={(e) => { setEditItemDescrValue(e.target.value) }}
 						value={editItemDescrValue}
 						onKeyDown={(e) => handleOnEnterPress(e)}
 					/>)
-					: (<div className={`list-item ${item.status.done ? 'done'
+					: (<div className={`list-item list-item-descr ${item.status.done ? 'done'
 						: !item.status.open ? 'in-progress'
 							: ''}`}>
-						<span>{descrValue}</span>
+						<span>{descrValue.length > 0 ? `${descrValue}` : '[Без опису]'}</span>
 					</div>)
 				}
 			</li>

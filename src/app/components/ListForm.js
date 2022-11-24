@@ -4,6 +4,7 @@ import './components.css';
 export default function ListForm({ inputValue, setInputValue, listItems, setListItems, setFilterStatus, textareaValue, setTextareaValue }) {
 
 	const handleInputValue = (e) => {
+		document.getElementsByClassName('input-title')[0].classList.remove('alert');
 		setInputValue(e.target.value);
 	};
 
@@ -13,14 +14,21 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		setListItems([
-			...listItems,
-			{
-				title: inputValue, descr: textareaValue, status: { done: false, open: true }, id: Math.random() * 1000
-			}
-		])
-		setInputValue('');
-		setTextareaValue('');
+		if (inputValue.trim().length === 0) {
+			document.getElementsByClassName('input-title')[0].classList.add('alert');
+		} else {
+			setListItems([
+				...listItems,
+				{
+					title: inputValue.trim(),
+					descr: textareaValue.trim(),
+					status: { done: false, open: true },
+					id: Math.random() * 1000
+				}
+			])
+			setInputValue('');
+			setTextareaValue('');
+		}
 	}
 
 	const handleFilterStatusChange = (e) => {
@@ -33,10 +41,11 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 		<form className="list-form">
 			<div className="form-wrapper">
 				<input value={inputValue}
+					className="input-title"
 					maxLength={80}
 					onChange={handleInputValue} type="text"
 					placeholder="Що заплануємо?"
-					/>
+				/>
 				<div className="list-select">
 					<select name="status"
 						id="status"
@@ -54,7 +63,7 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 				placeholder="Опис замітки"
 				value={textareaValue}
 				onChange={handleTextareaValue}
-				></textarea>
+			></textarea>
 			<button onClick={handleSubmit}>&#128397;</button>
 
 		</form>

@@ -17,6 +17,10 @@
     padding: 0 15px;
 }
 
+.list-form input.alert {
+    border: 2px solid var(--alert-color);
+}
+
 .list-form textarea {
     padding: 10px;
     resize: none;
@@ -116,9 +120,11 @@ select {
     .list-items {
         grid-template-columns: 1fr;
     }
+
     .form-wrapper {
         flex-direction: column;
     }
+
     .list-form input {
         padding: 15px;
     }
@@ -137,7 +143,7 @@ select {
     width: 100%;
     background-color: var(--elem-bg-color);
     color: var(--text-light-color);
-    
+
 }
 
 .list-item-wrapper .list-item span {
@@ -145,9 +151,22 @@ select {
     word-wrap: break-word;
 }
 
+.list-item-wrapper .list-item-title span {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.list-item-wrapper .list-item-descr span {
+    font-style: italic;
+}
+
 
 .list-item-wrapper div.list-item {
     border: 2px solid transparent;
+}
+
+.list-item-wrapper div.list-item-title {
+    border-bottom: 1px solid var(--bg-main-color);
 }
 
 .list-item-wrapper .btn-done {
