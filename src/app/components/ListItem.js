@@ -1,7 +1,7 @@
 import React from "react";
 import './components.css';
 
-export default function ListItem({ item, titleValue, listItems, setListItems, setEditItem, setEditItemValue, editItemValue, editItem, descrValue }) {
+export default function ListItem({ item, titleValue, listItems, setListItems, setEditItem, setEditItemTitleValue, editItemTitleValue, editItem, descrValue, editItemDescrValue, setEditItemDescrValue }) {
 	const toggleDeleteItem = () => {
 		setListItems(listItems.filter(elem => elem.id !== item.id));
 	}
@@ -35,20 +35,22 @@ export default function ListItem({ item, titleValue, listItems, setListItems, se
 
 	const handleEditListItem = () => {
 		setEditItem(item.id);
-		setEditItemValue(item.title);
-
+		setEditItemTitleValue(item.title);
+		setEditItemDescrValue(item.descr);
 	}
 
 	function handleSaveEditListItem(id) {
 		const updatedListItems = [...listItems].map(elem => {
 			if (elem.id === id) {
-				elem.title = editItemValue;
+				elem.title = editItemTitleValue;
+				elem.descr = editItemDescrValue;
 			}
 			return elem;
 		})
 		setListItems(updatedListItems);
 		setEditItem(null);
-		setEditItemValue('');
+		setEditItemTitleValue('');
+		setEditItemDescrValue('');
 	}
 
 	const handleOnEnterPress = (e) => {
@@ -66,8 +68,8 @@ export default function ListItem({ item, titleValue, listItems, setListItems, se
 						type="text"
 						name="card-title"
 						maxLength={80}
-						onChange={(e) => { setEditItemValue(e.target.value) }}
-						value={editItemValue}
+						onChange={(e) => { setEditItemTitleValue(e.target.value) }}
+						value={editItemTitleValue}
 						onKeyDown={(e) => handleOnEnterPress(e)}
 					/>)
 					: (<div className={`list-item list-item-title ${item.status.done ? 'done'
@@ -82,8 +84,8 @@ export default function ListItem({ item, titleValue, listItems, setListItems, se
 						className="list-item"
 						name="card-descr"
 						maxLength={220}
-						onChange={(e) => { setEditItemValue(e.target.value) }}
-						value={editItemValue}
+						onChange={(e) => { setEditItemDescrValue(e.target.value) }}
+						value={editItemDescrValue}
 						onKeyDown={(e) => handleOnEnterPress(e)}
 					/>)
 					: (<div className={`list-item ${item.status.done ? 'done'

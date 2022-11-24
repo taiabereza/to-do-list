@@ -11,7 +11,8 @@ function App() {
   const [filterStatus, setFilterStatus] = useState('all');
   const [filteredItems, setfilteredItems] = useState([]);
   const [editItem, setEditItem] = useState(null); 
-  const [editItemValue, setEditItemValue] = useState('');
+  const [editItemTitleValue, setEditItemTitleValue] = useState('');
+  const [editItemDescrValue, setEditItemDescrValue] = useState('');
 
   useEffect(() => {
     getLocalListItems();
@@ -75,8 +76,10 @@ function App() {
                 filteredItems={filteredItems}
                 setEditItem={setEditItem}
                 editItem={editItem}
-                setEditItemValue={setEditItemValue}
-                editItemValue={editItemValue}
+                setEditItemTitleValue={setEditItemTitleValue}
+                editItemTitleValue={editItemTitleValue}
+                editItemDescrValue={editItemDescrValue}
+                setEditItemDescrValue={setEditItemDescrValue}
                 />
       </div>
     </div>
