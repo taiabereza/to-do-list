@@ -25,7 +25,7 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 					status: { done: false, open: true },
 					id: Math.random() * 1000,
 					creationDate: new Date().toISOString(),
-          updateDate: new Date().toISOString(),
+					updateDate: new Date().toISOString(),
 				}
 			])
 			setInputValue('');
@@ -38,7 +38,7 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 			e.target.value
 		);
 	}
-	
+
 	const handleFilterDateChange = (e) => {
 		setFilterDate(
 			e.target.value
@@ -47,13 +47,13 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 
 	return (
 		<form className="list-form">
+			<input value={inputValue}
+				className="input-title"
+				maxLength={80}
+				onChange={handleInputValue} type="text"
+				placeholder="Що заплануємо?"
+			/>
 			<div className="form-wrapper">
-				<input value={inputValue}
-					className="input-title"
-					maxLength={80}
-					onChange={handleInputValue} type="text"
-					placeholder="Що заплануємо?"
-				/>
 				<div className="list-select">
 					<select name="status"
 						id="status"
@@ -69,8 +69,10 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 					<select name="date"
 						id="date"
 						onChange={handleFilterDateChange}>
-						<option value="older-first">Від старіших до новіших</option>
-						<option value="newer-first">Від новіших до старіших</option>
+						<option value="creation-older">Спочатку старіші (за датою створення)</option>
+						<option value="creation-newer">Спочатку новіші (за датою створення)</option>
+						<option value="update-older">Спочатку старіші (за датою оновлення)</option>
+						<option value="update-newer">Спочатку новіші (за датою оновлення)</option>
 					</select>
 				</div>
 			</div>
@@ -82,7 +84,6 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 				onChange={handleTextareaValue}
 			></textarea>
 			<button onClick={handleSubmit}>&#128397;</button>
-
 		</form>
 	);
 }

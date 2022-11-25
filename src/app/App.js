@@ -9,7 +9,7 @@ function App() {
   const [textareaValue, setTextareaValue] = useState('');
   const [listItems, setListItems] = useState([]);
   const [filterStatus, setFilterStatus] = useState('all');
-  const [filterDate, setFilterDate] = useState('older-first');
+  const [filterDate, setFilterDate] = useState('creation-older');
   const [editItem, setEditItem] = useState(null);
   const [editItemTitleValue, setEditItemTitleValue] = useState('');
   const [editItemDescrValue, setEditItemDescrValue] = useState('');
@@ -40,8 +40,12 @@ function App() {
 
   const handleFilterItemsByDate = (items) => {
     switch (filterDate) {
-      case ('newer-first'):
+      case ('creation-newer'):
         return items.sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate));
+      case ('update-older'):
+        return items.sort((a, b) => new Date(a.updateDate) - new Date(b.updateDate));
+      case ('update-newer'):
+        return items.sort((a, b) => new Date(b.updateDate) - new Date(a.updateDate));
       default:
         return items.sort((a, b) => new Date(a.creationDate) - new Date(b.creationDate));
     }
@@ -74,8 +78,10 @@ function App() {
     <div className='app'>
       <div className="app-container">
         <header>
-          <h2>СПИСОК СПРАВ</h2>
+          <h2>&gt;——СПИСОК СПРАВ——&gt;</h2>
         </header>
+
+        
 
         <ListForm inputValue={inputValue}
           setInputValue={setInputValue}

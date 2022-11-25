@@ -42,8 +42,11 @@ export default function ListItem({ item, titleValue, listItems, setListItems, se
 	function handleSaveEditListItem(id) {
 		const updatedListItems = [...listItems].map(elem => {
 			if (elem.id === id) {
-				elem.title = editItemTitleValue;
-				elem.descr = editItemDescrValue;
+				if (elem.title !== editItemTitleValue.trim() || elem.descr !== editItemDescrValue.trim()) {
+					elem.updateDate = new Date().toISOString();
+					elem.title = editItemTitleValue.trim();
+					elem.descr = editItemDescrValue.trim();
+				}
 			}
 			return elem;
 		})

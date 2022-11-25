@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+SC:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
 * {
   padding: 0px;
   margin: 0px;
@@ -45,21 +47,25 @@ body {
 
 body {
   background-color: var(--bg-main-color);
+  background-image: url('./app/img/bgtexture.jpg');
+  background-blend-mode: lighten;
   color: var(--text-main-color);
   line-height: 1;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Alegreya SC', serif;
   font-size: 1.125rem;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 input,
 button,
+select,
 textarea {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Alegreya SC', serif;
   font-size: inherit;
 }
 
