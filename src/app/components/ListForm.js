@@ -1,7 +1,7 @@
 import React from "react";
 import './components.css';
 
-export default function ListForm({ inputValue, setInputValue, listItems, setListItems, setFilterStatus, textareaValue, setTextareaValue }) {
+export default function ListForm({ inputValue, setInputValue, listItems, setListItems, setFilterStatus, textareaValue, setTextareaValue, setFilterDate }) {
 
 	const handleInputValue = (e) => {
 		document.getElementsByClassName('input-title')[0].classList.remove('alert');
@@ -23,7 +23,9 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 					title: inputValue.trim(),
 					descr: textareaValue.trim(),
 					status: { done: false, open: true },
-					id: Math.random() * 1000
+					id: Math.random() * 1000,
+					creationDate: new Date().toISOString(),
+          updateDate: new Date().toISOString(),
 				}
 			])
 			setInputValue('');
@@ -33,6 +35,12 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 
 	const handleFilterStatusChange = (e) => {
 		setFilterStatus(
+			e.target.value
+		);
+	}
+	
+	const handleFilterDateChange = (e) => {
+		setFilterDate(
 			e.target.value
 		);
 	}
@@ -54,6 +62,15 @@ export default function ListForm({ inputValue, setInputValue, listItems, setList
 						<option value="open">Відкриті</option>
 						<option value="in-progress">Виконуються</option>
 						<option value="done">Виконані</option>
+					</select>
+				</div>
+
+				<div className="list-select">
+					<select name="date"
+						id="date"
+						onChange={handleFilterDateChange}>
+						<option value="older-first">Від старіших до новіших</option>
+						<option value="newer-first">Від новіших до старіших</option>
 					</select>
 				</div>
 			</div>

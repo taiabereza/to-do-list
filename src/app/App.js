@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './App.css';
 import ListForm from './components/ListForm';
 import ToDoList from './components/ToDoList';
@@ -9,36 +9,51 @@ function App() {
   const [textareaValue, setTextareaValue] = useState('');
   const [listItems, setListItems] = useState([]);
   const [filterStatus, setFilterStatus] = useState('all');
-  const [filteredItems, setfilteredItems] = useState([]);
-  const [editItem, setEditItem] = useState(null); 
+  const [filterDate, setFilterDate] = useState('older-first');
+  const [editItem, setEditItem] = useState(null);
   const [editItemTitleValue, setEditItemTitleValue] = useState('');
   const [editItemDescrValue, setEditItemDescrValue] = useState('');
 
   useEffect(() => {
     getLocalListItems();
   }, [])
-  
-  useEffect(()=> {
-    handleFilterItems();
+
+
+  useEffect(() => {
     setLocalListItems();
-  }, [listItems, filterStatus]);
-  
-  const handleFilterItems = () => {
-    switch(filterStatus){
+  }, [listItems, filterStatus, filterDate]);
+
+
+
+  const handleFilterItems = (items) => {
+    switch (filterStatus) {
       case 'open':
-        setfilteredItems(listItems.filter(item => item.status.open === true && item.status.done === false));
-        break;
+        return items.filter(item => item.status.open === true && item.status.done === false);
       case 'in-progress':
-        setfilteredItems(listItems.filter(item => item.status.open === false && item.status.done === false));
-        break;
+        return items.filter(item => item.status.open === false && item.status.done === false);
       case 'done':
-        setfilteredItems(listItems.filter(item => item.status.done === true));
-        break;
+        return items.filter(item => item.status.done === true);
       default:
-        setfilteredItems(listItems);
-        break;
+        return items;
     }
   };
+
+  const handleFilterItemsByDate = (items) => {
+    switch (filterDate) {
+      case ('newer-first'):
+        return items.sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate));
+      default:
+        return items.sort((a, b) => new Date(a.creationDate) - new Date(b.creationDate));
+    }
+  }
+
+
+  const filteredItems = useMemo(() => {
+    let res = listItems;
+    res = handleFilterItems(res);
+    res = handleFilterItemsByDate(res);
+    return res;
+  }, [listItems, filterStatus, filterDate])
 
   const setLocalListItems = () => {
     if (listItems.length > 0) {
@@ -58,29 +73,30 @@ function App() {
   return (
     <div className='app'>
       <div className="app-container">
-      <header>
-        <h2>СПИСОК СПРАВ</h2>
-      </header>
+        <header>
+          <h2>СПИСОК СПРАВ</h2>
+        </header>
 
-      <ListForm inputValue={inputValue}
-                setInputValue={setInputValue}
-                textareaValue={textareaValue}
-                setTextareaValue={setTextareaValue}
-                listItems={listItems}
-                setListItems={setListItems}
-                setFilterStatus={setFilterStatus}
-                />
+        <ListForm inputValue={inputValue}
+          setInputValue={setInputValue}
+          textareaValue={textareaValue}
+          setTextareaValue={setTextareaValue}
+          listItems={listItems}
+          setListItems={setListItems}
+          setFilterStatus={setFilterStatus}
+          setFilterDate={setFilterDate}
+        />
 
-      <ToDoList listItems={listItems}
-                setListItems={setListItems}
-                filteredItems={filteredItems}
-                setEditItem={setEditItem}
-                editItem={editItem}
-                setEditItemTitleValue={setEditItemTitleValue}
-                editItemTitleValue={editItemTitleValue}
-                editItemDescrValue={editItemDescrValue}
-                setEditItemDescrValue={setEditItemDescrValue}
-                />
+        <ToDoList listItems={listItems}
+          setListItems={setListItems}
+          filteredItems={filteredItems}
+          setEditItem={setEditItem}
+          editItem={editItem}
+          setEditItemTitleValue={setEditItemTitleValue}
+          editItemTitleValue={editItemTitleValue}
+          editItemDescrValue={editItemDescrValue}
+          setEditItemDescrValue={setEditItemDescrValue}
+        />
       </div>
     </div>
   );
