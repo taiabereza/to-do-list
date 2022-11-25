@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/to-do-list/static/css/main.f8209506.css",
+    "main.js": "/to-do-list/static/js/main.d7d94ff1.js",
+    "static/media/bgtexture.jpg": "/to-do-list/static/media/bgtexture.900c959a443b90709e78.jpg",
+    "static/media/stickerdeer.png": "/to-do-list/static/media/stickerdeer.dd392800e22c273dfc60.png",
+    "index.html": "/to-do-list/index.html",
+    "main.f8209506.css.map": "/to-do-list/static/css/main.f8209506.css.map",
+    "main.d7d94ff1.js.map": "/to-do-list/static/js/main.d7d94ff1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f8209506.css",
+    "static/js/main.d7d94ff1.js"
+  ]
+}
